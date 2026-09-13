@@ -1,0 +1,8 @@
+ID_Transaccion,Tipo_de_Flujo,Categoria_Contable,Concepto,Monto_Bruto,Created_time
+1001,Ingreso,Ventas Mostrador,Venta de bebidas y snacks turno mañana,34500,2026-09-01 13:00:00
+1002,Egreso,Proveedores,Pago reposición distribuidora bebidas,48000,2026-09-01 15:30:00
+1003,Ingreso,Ventas Mostrador,Venta turno tarde / noche,52100,2026-09-01 23:45:00
+1004,Egreso,Servicios,Factura servicio eléctrico local,18500,2026-09-02 10:00:00
+1005,Ingreso,Ventas Mostrador,Venta eventos especiales fin de semana,76800,2026-09-02 21:15:00
+1006,Egreso,Mantenimiento,Reparación equipo de frío góndola 2,12000,2026-09-03 11:30:00
+1007,Ingreso,Ventas Mostrador,Venta general bebidas y combos,41200,2026-09-03 19:40:00

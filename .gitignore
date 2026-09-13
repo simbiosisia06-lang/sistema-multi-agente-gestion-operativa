@@ -1,0 +1,42 @@
+# Archivos de entorno y credenciales
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Directorios de datos y volúmenes locales persistentes
+n8n_data/
+nocodb_data/
+ollama_data/
+data/local/
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs y trazas de depuración
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Node / dependencias temporales
+node_modules/
+
+# Python / bytecode temporal
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
+# Archivos del sistema y del entorno de desarrollo
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*~

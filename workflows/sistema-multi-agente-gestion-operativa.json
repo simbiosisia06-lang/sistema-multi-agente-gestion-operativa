@@ -1,0 +1,1358 @@
+{
+  "name": "Sistema Multi-Agente de Gestión Operativa (n8n + NocoDB)",
+  "nodes": [
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "google/gemma-4-e4b",
+          "mode": "list",
+          "cachedResultName": "google/gemma-4-e4b"
+        },
+        "responsesApiEnabled": false,
+        "options": {
+          "temperature": 0.1
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        528,
+        -384
+      ],
+      "id": "15a3df9c-eeb5-4905-a97f-becf96b2bd35",
+      "name": "Gemma-4-e4b",
+      "credentials": {
+        "openAiApi": {
+          "id": "1AA6bynikBzJxvz6",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "  ##   Inventario",
+        "height": 80,
+        "width": 150,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -64,
+        -816
+      ],
+      "id": "0554251c-8c32-4a4e-8487-1babfa926365",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Contabilidad",
+        "height": 80,
+        "width": 150,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -48,
+        -480
+      ],
+      "id": "c703c755-b5b7-4750-b9c3-46c47d1c7ee3",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "update",
+        "workspaceId": {
+          "__rl": true,
+          "value": "wf30x3qc",
+          "mode": "list",
+          "cachedResultName": "Default Workspace",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc"
+        },
+        "projectId": {
+          "__rl": true,
+          "value": "p3ri4dkom2z1cy4",
+          "mode": "list",
+          "cachedResultName": "Base",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc/p3ri4dkom2z1cy4"
+        },
+        "table": {
+          "__rl": true,
+          "value": "mrfbogczkggmrdw",
+          "mode": "list",
+          "cachedResultName": "Inventario",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc/p3ri4dkom2z1cy4/mrfbogczkggmrdw"
+        },
+        "id": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Row_ID_Value', `El identificador numérico o clave primaria única del registro. Debe enviarse como un valor numérico/alfanumérico puro, sin incluir prefijos, etiquetas de campo ni texto adicional.`, 'string') }}",
+        "fieldsMapper": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Vendido": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Vendido', `The final updated numeric value for the cumulative quantity sold (Vendido). Take the current 'Vendido' value from the context, add the new requested quantity, and send only the resulting sum (e.g., if current is 10 and ordered is 4, send 14).`, 'number') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "type": "number",
+              "display": true,
+              "defaultMatch": false,
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Producto",
+              "displayName": "Producto",
+              "type": "string",
+              "display": true,
+              "defaultMatch": false,
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Costo_Pack",
+              "displayName": "Costo_Pack",
+              "type": "number",
+              "display": true,
+              "defaultMatch": false,
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Venta_Pack",
+              "displayName": "Venta_Pack",
+              "type": "number",
+              "display": true,
+              "defaultMatch": false,
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "U.",
+              "displayName": "U.",
+              "type": "number",
+              "display": true,
+              "defaultMatch": false,
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Costo_Unidad",
+              "displayName": "Costo_Unidad",
+              "type": "string",
+              "display": true,
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Margen",
+              "displayName": "Margen",
+              "type": "string",
+              "display": true,
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Venta_Unidad",
+              "displayName": "Venta_Unidad",
+              "type": "string",
+              "display": true,
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Ganancias_Unidad",
+              "displayName": "Ganancias_Unidad",
+              "type": "string",
+              "display": true,
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Pack",
+              "displayName": "Pack",
+              "type": "number",
+              "display": true,
+              "defaultMatch": false,
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Vendido",
+              "displayName": "Vendido",
+              "type": "number",
+              "display": true,
+              "defaultMatch": false,
+              "readOnly": false
+            },
+            {
+              "id": "Ganancias_Realizadas",
+              "displayName": "Ganancias_Realizadas",
+              "type": "string",
+              "display": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "n8n-nodes-base.nocoDbTool",
+      "typeVersion": 4,
+      "position": [
+        1056,
+        -656
+      ],
+      "id": "2f26802b-ded3-4837-9bdf-a8160f65aaf0",
+      "name": "Actualizar",
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "5u8st7NMnTr4LkKq",
+          "name": "NocoDB Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "search",
+        "workspaceId": {
+          "__rl": true,
+          "value": "wf30x3qc",
+          "mode": "list",
+          "cachedResultName": "Default Workspace",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc"
+        },
+        "projectId": {
+          "__rl": true,
+          "value": "p3ri4dkom2z1cy4",
+          "mode": "list",
+          "cachedResultName": "Base",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc/p3ri4dkom2z1cy4"
+        },
+        "table": {
+          "__rl": true,
+          "value": "mrfbogczkggmrdw",
+          "mode": "list",
+          "cachedResultName": "Inventario",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc/p3ri4dkom2z1cy4/mrfbogczkggmrdw"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.nocoDbTool",
+      "typeVersion": 4,
+      "position": [
+        960,
+        -656
+      ],
+      "id": "280e84d7-8b56-4f95-abef-72051c283b76",
+      "name": "Buscar",
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "5u8st7NMnTr4LkKq",
+          "name": "NocoDB Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "delete",
+        "workspaceId": {
+          "__rl": true,
+          "value": "wf30x3qc",
+          "mode": "list",
+          "cachedResultName": "Default Workspace",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc"
+        },
+        "projectId": {
+          "__rl": true,
+          "value": "p3ri4dkom2z1cy4",
+          "mode": "list",
+          "cachedResultName": "Base",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc/p3ri4dkom2z1cy4"
+        },
+        "table": {
+          "__rl": true,
+          "value": "mrfbogczkggmrdw",
+          "mode": "list",
+          "cachedResultName": "Inventario",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc/p3ri4dkom2z1cy4/mrfbogczkggmrdw"
+        },
+        "id": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Row_ID_Value', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.nocoDbTool",
+      "typeVersion": 4,
+      "position": [
+        864,
+        -656
+      ],
+      "id": "e4e45732-9848-467e-bb28-fd406f8e3676",
+      "name": "Eliminar",
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "5u8st7NMnTr4LkKq",
+          "name": "NocoDB Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "create",
+        "workspaceId": {
+          "__rl": true,
+          "value": "wf30x3qc",
+          "mode": "list",
+          "cachedResultName": "Default Workspace",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc"
+        },
+        "projectId": {
+          "__rl": true,
+          "value": "p3ri4dkom2z1cy4",
+          "mode": "list",
+          "cachedResultName": "Base",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc/p3ri4dkom2z1cy4"
+        },
+        "table": {
+          "__rl": true,
+          "value": "mrfbogczkggmrdw",
+          "mode": "list",
+          "cachedResultName": "Inventario",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc/p3ri4dkom2z1cy4/mrfbogczkggmrdw"
+        },
+        "fieldsMapper": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Costo_Pack": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Costo_Pack', ``, 'number') }}",
+            "Venta_Pack": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Venta_Pack', ``, 'number') }}",
+            "Producto": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Producto', ``, 'string') }}",
+            "Unidad_Pack": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Unidad_Pack', ``, 'number') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "type": "number",
+              "display": true,
+              "defaultMatch": false,
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Producto",
+              "displayName": "Producto",
+              "type": "string",
+              "display": true,
+              "defaultMatch": false,
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Costo_Pack",
+              "displayName": "Costo_Pack",
+              "type": "number",
+              "display": true,
+              "defaultMatch": false,
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Venta_Pack",
+              "displayName": "Venta_Pack",
+              "type": "number",
+              "display": true,
+              "defaultMatch": false,
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Unidad_Pack",
+              "displayName": "Unidad_Pack",
+              "type": "number",
+              "display": true,
+              "defaultMatch": false,
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Costo_Unidad",
+              "displayName": "Costo_Unidad",
+              "type": "string",
+              "display": true,
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Margen",
+              "displayName": "Margen",
+              "type": "string",
+              "display": true,
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Venta_Unidad",
+              "displayName": "Venta_Unidad",
+              "type": "string",
+              "display": true,
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Ganancias_Unidad",
+              "displayName": "Ganancias_Unidad",
+              "type": "string",
+              "display": true,
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Vendido",
+              "displayName": "Vendido",
+              "type": "number",
+              "display": true,
+              "defaultMatch": false,
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Ganancias_Realizadas",
+              "displayName": "Ganancias_Realizadas",
+              "type": "string",
+              "display": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "n8n-nodes-base.nocoDbTool",
+      "typeVersion": 4,
+      "position": [
+        768,
+        -656
+      ],
+      "id": "1e0670b7-0675-4e65-b62a-842513eff22f",
+      "name": "Crear",
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "5u8st7NMnTr4LkKq",
+          "name": "NocoDB Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "allowFileUploads": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -256,
+        -656
+      ],
+      "id": "7ab552f0-85c3-4030-bfb5-e50afd9e76fd",
+      "name": "Chat",
+      "webhookId": "8939d412-aba7-4668-9660-f9dd31b97453"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.chatInput.toLowerCase() }}",
+                    "rightValue": "inventario:",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    },
+                    "id": "e4a8151f-b452-4c00-8135-efceb6d23d6c"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "07f7dcda-ec2e-481e-bb1f-e5be835d8844",
+                    "leftValue": "={{ $json.chatInput.toLowerCase() }}",
+                    "rightValue": "contabilidad:",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -112,
+        -656
+      ],
+      "id": "164bde7e-1f40-4d60-8ba5-7fe311cf99d6",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Use this tool when the user requests a summary, total, report, or any query that requires viewing multiple transactions at once (for example: \"how much did I spend in total\", \"summary by category\", \"how much income was there this month\", \"show me all movements\"). This tool returns ALL rows from the finance table without the need for any filters or additional data from the user. Do not ask anything before using it — call it directly with the default parameters to fetch all records, and then sum and group the values yourself according to what was requested.",
+        "authentication": "nocoDbApiToken",
+        "operation": "update",
+        "workspaceId": {
+          "__rl": true,
+          "value": "wf30x3qc",
+          "mode": "list",
+          "cachedResultName": "Default Workspace",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc"
+        },
+        "projectId": {
+          "__rl": true,
+          "value": "p3ri4dkom2z1cy4",
+          "mode": "list",
+          "cachedResultName": "Base",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc/p3ri4dkom2z1cy4"
+        },
+        "table": {
+          "__rl": true,
+          "value": "m625nt1andjoicw",
+          "mode": "list",
+          "cachedResultName": "finanzas",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc/p3ri4dkom2z1cy4/m625nt1andjoicw"
+        },
+        "id": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Row_ID_Value', ``, 'string') }}",
+        "fieldsMapper": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID_Transaccion": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('ID_Transaccion', ``, 'number') }}",
+            "Monto_Bruto": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Monto_Bruto', ``, 'string') }}",
+            "Concepto": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Concepto', ``, 'string') }}",
+            "Categoria_Contable": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Categoria_Contable', ``, 'string') }}",
+            "Tipo_de_Flujo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Tipo_de_Flujo', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ID_Transaccion",
+              "displayName": "ID_Transaccion",
+              "type": "number",
+              "display": true,
+              "defaultMatch": false,
+              "readOnly": false
+            },
+            {
+              "id": "Tipo_de_Flujo",
+              "displayName": "Tipo_de_Flujo",
+              "type": "string",
+              "display": true,
+              "defaultMatch": false,
+              "readOnly": false
+            },
+            {
+              "id": "Categoria_Contable",
+              "displayName": "Categoria_Contable",
+              "type": "string",
+              "display": true,
+              "defaultMatch": false,
+              "readOnly": false
+            },
+            {
+              "id": "Concepto",
+              "displayName": "Concepto",
+              "type": "string",
+              "display": true,
+              "defaultMatch": false,
+              "readOnly": false
+            },
+            {
+              "id": "Monto_Bruto",
+              "displayName": "Monto_Bruto",
+              "type": "string",
+              "display": true,
+              "defaultMatch": false,
+              "readOnly": false
+            },
+            {
+              "id": "Created time",
+              "displayName": "Created time",
+              "type": "string",
+              "display": true,
+              "readOnly": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "n8n-nodes-base.nocoDbTool",
+      "typeVersion": 4,
+      "position": [
+        992,
+        -320
+      ],
+      "id": "217e85e3-153f-45e8-9835-f6fba6663539",
+      "name": "Actualizar.",
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "5u8st7NMnTr4LkKq",
+          "name": "NocoDB Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Usa esta herramienta cuando el usuario pida un resumen, total, reporte, o cualquier consulta que requiera ver múltiples transacciones a la vez (por ejemplo: \"cuánto gasté en total\", \"resumen por categoría\", \"cuánto ingresó este mes\", \"mostrame todos los movimientos\"). Esta herramienta devuelve TODAS las filas de la tabla de finanzas sin necesidad de ningún filtro ni dato adicional del usuario. No preguntes nada antes de usarla — llamala directamente con los parámetros por defecto para traer todos los registros, y luego sumá y agrupá los valores vos mismo según lo que se te pidió.",
+        "authentication": "nocoDbApiToken",
+        "operation": "search",
+        "workspaceId": {
+          "__rl": true,
+          "value": "wf30x3qc",
+          "mode": "list",
+          "cachedResultName": "Default Workspace",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc"
+        },
+        "projectId": {
+          "__rl": true,
+          "value": "p3ri4dkom2z1cy4",
+          "mode": "list",
+          "cachedResultName": "Base",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc/p3ri4dkom2z1cy4"
+        },
+        "table": {
+          "__rl": true,
+          "value": "m625nt1andjoicw",
+          "mode": "list",
+          "cachedResultName": "finanzas",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc/p3ri4dkom2z1cy4/m625nt1andjoicw"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.nocoDbTool",
+      "typeVersion": 4,
+      "position": [
+        896,
+        -320
+      ],
+      "id": "4f78923b-eb57-4cee-82a2-17635c637e94",
+      "name": "Buscar.",
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "5u8st7NMnTr4LkKq",
+          "name": "NocoDB Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "delete",
+        "workspaceId": {
+          "__rl": true,
+          "value": "wf30x3qc",
+          "mode": "list",
+          "cachedResultName": "Default Workspace",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc"
+        },
+        "projectId": {
+          "__rl": true,
+          "value": "p3ri4dkom2z1cy4",
+          "mode": "list",
+          "cachedResultName": "Base",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc/p3ri4dkom2z1cy4"
+        },
+        "table": {
+          "__rl": true,
+          "value": "m625nt1andjoicw",
+          "mode": "list",
+          "cachedResultName": "finanzas",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc/p3ri4dkom2z1cy4/m625nt1andjoicw"
+        },
+        "id": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Row_ID_Value', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.nocoDbTool",
+      "typeVersion": 4,
+      "position": [
+        800,
+        -320
+      ],
+      "id": "a8cf759a-32b5-4943-826f-613ed6ba1fd3",
+      "name": "Eliminar.",
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "5u8st7NMnTr4LkKq",
+          "name": "NocoDB Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "create",
+        "workspaceId": {
+          "__rl": true,
+          "value": "wf30x3qc",
+          "mode": "list",
+          "cachedResultName": "Default Workspace",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc"
+        },
+        "projectId": {
+          "__rl": true,
+          "value": "p3ri4dkom2z1cy4",
+          "mode": "list",
+          "cachedResultName": "Base",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc/p3ri4dkom2z1cy4"
+        },
+        "table": {
+          "__rl": true,
+          "value": "m625nt1andjoicw",
+          "mode": "list",
+          "cachedResultName": "finanzas",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc/p3ri4dkom2z1cy4/m625nt1andjoicw"
+        },
+        "fieldsMapper": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Tipo_de_Flujo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Tipo_de_Flujo', ``, 'string') }}",
+            "Monto_Bruto": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Monto_Bruto', ``, 'string') }}",
+            "Concepto": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Concepto', ``, 'string') }}",
+            "Categoria_Contable": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Categoria_Contable', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ID_Transaccion",
+              "displayName": "ID_Transaccion",
+              "type": "number",
+              "display": true,
+              "defaultMatch": false,
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Tipo_de_Flujo",
+              "displayName": "Tipo_de_Flujo",
+              "type": "string",
+              "display": true,
+              "defaultMatch": false,
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Categoria_Contable",
+              "displayName": "Categoria_Contable",
+              "type": "string",
+              "display": true,
+              "defaultMatch": false,
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Concepto",
+              "displayName": "Concepto",
+              "type": "string",
+              "display": true,
+              "defaultMatch": false,
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Monto_Bruto",
+              "displayName": "Monto_Bruto",
+              "type": "string",
+              "display": true,
+              "defaultMatch": false,
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Created time",
+              "displayName": "Created time",
+              "type": "string",
+              "display": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "n8n-nodes-base.nocoDbTool",
+      "typeVersion": 4,
+      "position": [
+        704,
+        -320
+      ],
+      "id": "0f6f501a-9c82-4369-bad9-172898855c9f",
+      "name": "Crear.",
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "5u8st7NMnTr4LkKq",
+          "name": "NocoDB Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "google/gemma-4-e4b",
+          "mode": "list",
+          "cachedResultName": "google/gemma-4-e4b"
+        },
+        "responsesApiEnabled": false,
+        "options": {
+          "temperature": 0
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        528,
+        -736
+      ],
+      "id": "e11e4d41-1d1c-4e6c-ad62-faf44541b419",
+      "name": "Gemma-4-e4b.",
+      "credentials": {
+        "openAiApi": {
+          "id": "1AA6bynikBzJxvz6",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "create",
+        "workspaceId": {
+          "__rl": true,
+          "value": "wf30x3qc",
+          "mode": "list",
+          "cachedResultName": "Default Workspace",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc"
+        },
+        "projectId": {
+          "__rl": true,
+          "value": "p3ri4dkom2z1cy4",
+          "mode": "list",
+          "cachedResultName": "Base",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc/p3ri4dkom2z1cy4"
+        },
+        "table": {
+          "__rl": true,
+          "value": "mchgkv8si1ybosm",
+          "mode": "list",
+          "cachedResultName": "Movimientos",
+          "cachedResultUrl": "http://nocodb:8080/#/wf30x3qc/p3ri4dkom2z1cy4/mchgkv8si1ybosm"
+        },
+        "fieldsMapper": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Producto": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Producto', ``, 'string') }}",
+            "Cantidad": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Cantidad', ``, 'number') }}",
+            "Precio": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Precio', ``, 'number') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Producto",
+              "displayName": "Producto",
+              "type": "string",
+              "display": true,
+              "defaultMatch": false,
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Precio",
+              "displayName": "Precio",
+              "type": "number",
+              "display": true,
+              "defaultMatch": false,
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Cantidad",
+              "displayName": "Cantidad",
+              "type": "number",
+              "display": true,
+              "defaultMatch": false,
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Created time",
+              "displayName": "Created time",
+              "type": "string",
+              "display": true,
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Total",
+              "displayName": "Total",
+              "type": "string",
+              "display": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "n8n-nodes-base.nocoDbTool",
+      "typeVersion": 4,
+      "position": [
+        656,
+        -656
+      ],
+      "id": "a12da57c-2d6b-4bb0-88db-bf38bef776c4",
+      "name": "Registrar Movimiento",
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "5u8st7NMnTr4LkKq",
+          "name": "NocoDB Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        336,
+        -688
+      ],
+      "id": "5f036db4-faf2-44da-a928-14d1c39bdb5b",
+      "name": "Memoria"
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        336,
+        -336
+      ],
+      "id": "2deb81c6-ce7a-4ab4-9db3-3f0d9ec06bbf",
+      "name": "Memoria1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "qwen/qwen3-vl-4b",
+          "mode": "list",
+          "cachedResultName": "qwen/qwen3-vl-4b"
+        },
+        "responsesApiEnabled": false,
+        "options": {
+          "temperature": 0
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        176,
+        -688
+      ],
+      "id": "bad0f473-2c6f-478b-999b-a576f679d40b",
+      "name": "Qwen3 VL 4B",
+      "credentials": {
+        "openAiApi": {
+          "id": "1AA6bynikBzJxvz6",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "qwen/qwen3-vl-4b",
+          "mode": "list",
+          "cachedResultName": "qwen/qwen3-vl-4b"
+        },
+        "responsesApiEnabled": false,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        176,
+        -336
+      ],
+      "id": "fc8b888b-61d8-4dc4-be51-12c38053d5fa",
+      "name": "Qwen3 VL 4B.",
+      "credentials": {
+        "openAiApi": {
+          "id": "1AA6bynikBzJxvz6",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.chatInput }}",
+        "options": {
+          "systemMessage": "# ROL: SUPERVISOR DE INVENTARIO (EXPERTO EN VISIÓN Y NORMALIZACIÓN)\nSos el Supervisor Inteligente de Inventario. Tu función es analizar pedidos (texto o imágenes de remitos, listas manuscritas, facturas o góndolas), normalizar jerga u oraciones informales y traducir todo en órdenes exactas en lote para el Ejecutor. Responde siempre en Español.\n\n<protocolo_vision_avanzado>\nSi la entrada incluye una IMAGEN, ejecuta obligatoriamente este protocolo de extracción visual:\n1. ESCANEO AISLADO FILA POR FILA: Lee estrictamente de arriba hacia abajo y de izquierda a derecha. Aísla cada renglón para evitar cruzar atributos entre productos adyacentes.\n2. AUDITORÍA DE CARACTERES: Identifica con precisión matemática dígitos y texto. Si un número es ambiguo (ej. confusión entre 0/O, 1/7 u 8/3), frena y re-escanea esa región focalizada.\n3. SEPARACIÓN ESTRICTA: Separa siempre la cantidad del nombre del producto.\n4. UMBRAL DE RECHAZO VISUAL: Si la imagen está borrosa, cortada, tapada o presenta inconsistencias numéricas irresolubles, cancela la orden y emite inmediatamente:\n   RECHAZADO: {Causa exacta de la falla visual}\n</protocolo_vision_avanzado>\n\n<gestion_jerga_y_datos>\n1. NORMALIZACIÓN DE JERGA: Convierte expresiones informales, abreviaturas o marcas populares a su denominación oficial del catálogo (ej. \"2 Brahma 1L\" -> \"Cerveza Brahma 1L\", \"4 Cono\" -> \"Cono\"). Si el producto es reconocible, normalízalo sin rechazar.\n2. DATOS MÍNIMOS REQUERIDOS: Para ventas o actualizaciones solo exiges Nombre y Cantidad. NUNCA pidas stock actual ni rechaces por falta de este.\n3. RECONOCIMIENTO DE CLAVES TÉCNICAS DE ENTRADA: Si la entrada contiene formato de claves explícitas (como `Stock_Packs={W}` o similar), debes mapearlas directamente y sin alteración hacia la única columna real de unidades (`Unidad_Pack={W}`). Queda prohibido escupir o conservar la etiqueta `Stock_Packs` o usar columnas intermedias inexistentes en la salida.\n</gestion_jerga_y_datos>\n\n<comandos_y_ejemplos_en_lote>\n## /registrar\nEntrada: \"Anotame {Cantidad_1} de {Nombre_Informal_A} y {Cantidad_2} de {Nombre_Informal_B}\"\nSalida:\n/registrar\n- {Ítem_A}: {Cantidad_1}\n- {Ítem_B}: {Cantidad_2}\n\n## /actualizar\nEntrada: \"Subile el costo a {Ítem_A} a {Valor_1} y la venta a {Valor_2}\"\nSalida:\n/actualizar\n- {Ítem_A}: Costo_Pack={Valor_1}, Venta_Pack={Valor_2}\n\n## /crear\nEntrada: Líneas con formato libre (\"Cargá el {Ítem_A}: {W} unidades...\") o formato técnico directo (`Stock_Packs={W}, Unidad_Pack={X}, Costo_Pack={Y}, Venta_Pack={Z}`)\nSalida Obligatoria (Mapeando los valores limpios exclusivamente a Unidad_Pack, Costo_Pack y Venta_Pack sin columnas intermedias):\n/crear\n- {Ítem_A}: Unidad_Pack={W}, Costo_Pack={Y}, Venta_Pack={Z}\n\n## /eliminar\nEntrada: \"Sacá del sistema el {Ítem_A} y el {Ítem_B}\"\nSalida:\n/eliminar\n- {Ítem_A}\n- {Ítem_B}\n\n## /consulta\nEntrada: \"Dame el estado general del inventario\"\nSalida:\n/consulta\n\n## RECHAZO\nEntrada: Pedidos donde falte completamente la cantidad numérica de forma irrecuperable O imágenes con texto totalmente ilegible.\nSalida:\nRECHAZADO: Cantidad no especificada / Texto ilegible en columna de datos.\n</comandos_y_ejemplos_en_lote>\n\n<reglas_de_salida_estrictas>\n- Emite EXCLUSIVAMENTE el bloque de comando resultante o la línea de RECHAZADO.\n- Queda ESTRICTAMENTE PROHIBIDO incluir saludos, introducciones, explicaciones, bloques de razonamiento (como etiquetas de pensamiento internas que se filtren en la salida) o caracteres decorativos.\n</reglas_de_salida_estrictas>",
+          "passthroughBinaryImages": true,
+          "passthroughBinaryPdfs": true,
+          "enableStreaming": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        176,
+        -848
+      ],
+      "id": "93e4c6b8-80f0-4406-9b73-d9e11ce35782",
+      "name": "Atenea-Agent"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.output }}",
+        "options": {
+          "systemMessage": "# ROL: EJECUTOR DE NOCODB (ESTRUCTURA SIMPLIFICADA)\nProcesas órdenes del Supervisor ejecutando acciones en la base de datos mediante: Buscar, Actualizar, Crear, Eliminar, Registrar Movimiento. Responde siempre en Español.\n\n# REGLA FUNDAMENTAL: PROCESAMIENTO Y BÚSQUEDA EN LOTE (BATCH)\nProcesa TODAS las líneas de la orden recibida en un solo mensaje de respuesta.\n\n# REGLA CRÍTICA DE BÚSQUEDA: Queda ESTRICTAMENTE PROHIBIDO invocar la herramienta 'Buscar' producto por producto de manera individual. Ante una orden con múltiples productos, debes ejecutar la herramienta 'Buscar' UNA ÚNICA VEZ pasando la lista completa de todos los productos juntos. Extrae de esa única consulta todos los IDs, precios y cantidades acumuladas de 'Vendido' antes de proceder a las escrituras.\n\n# REGLA OBLIGATORIA DE ESCALA Y VALORES (USD / FORMATO MONETARIO)\n- CORRECCIÓN DE CEROS: Queda estrictamente prohibido truncar, redondear o omitir ceros estructurales en los valores de costos, precios, montos o variables monetarias. Todo valor ingresado, calculado o procesado debe reflejar su magnitud real completa (ejemplo: si el monto es diez mil, se debe registrar exactamente como 10000 y nunca como 10,00 o versiones abreviadas).\n- COHERENCIA DE DATOS: Asegúrate de que todas las ejecuciones de /crear, /actualizar o /registrar mantengan la integridad numérica exacta sin alterar la escala de precios o unidades monetarias exigidas.\n\n# REGLAS GENERALES DE OPERACIÓN\n1. BÚSQUEDA ÚNICA EN LOTE: Invoca `Buscar` una sola vez con la lista combinada de ítems. Nunca inventes un Id. Si un producto no aparece en el resultado devuelto, repórtalo como \"no encontrado\" y continúa inmediatamente con la ejecución de los demás productos del lote.\n2. TEXTO LITERAL: Conserva exactamente la cadena del nombre ({Producto}) recibida. No alteres mayúsculas, minúsculas, ni singulares/plurales.\n3. RELACIÓN 1:1: Cada producto procesado genera exactamente 1 línea de respuesta.\n\n---\n\n# INSTRUCCIONES DE EJECUCIÓN CON FÓRMULAS Y EJEMPLOS\n\n## /crear (Alta de producto)\n- Fórmula de Ejecución Correcta: `Crear(Producto={Producto}, Unidad_Pack={X}, Costo_Pack={Y}, Venta_Pack={Z})`\n- Mapeo estricto: \n  * {X} se asigna exclusivamente a la columna de unidades/packs.\n  * {Y} se asigna al costo.\n  * {Z} se asigna a la venta.\n  * (Sin columnas intermedias redundantes).\n\nEjemplo de Entrada:\n/crear\n- {Producto_A}: Unidad_Pack={X1}, Costo_Pack={Y1}, Venta_Pack={Z1}\n- {Producto_B}: Unidad_Pack={X2}, Costo_Pack={Y2}, Venta_Pack={Z2}\n\nEjemplo de Salida (en un solo golpe):\n- Para /crear: {Producto_A}: alta confirmada (Unidad: {X1} u. | Costo: ${Y1} | Venta: ${Z1})\n- Para /crear: {Producto_B}: alta confirmada (Unidad: {X2} u. | Costo: ${Y2} | Venta: ${Z2})\n\n---\n\n## /actualizar (Modificación de catálogo)\nExplicación: Modifica los valores fijos de un producto existente usando su Id. Prohibido crear filas en Movimientos.\nFórmula de Ejecución: \n  Paso 1: `[{Id_A}, {Id_B}...] = Buscar({Producto_A}, {Producto_B}...)` -> (EJECUTAR 1 SOLA LLAMADA EN LOTE)\n  Paso 2: `Actualizar(Id={Id}, {Campo}={Nuevo_Valor})` para cada ítem.\n\nEjemplo de Entrada:\n/actualizar\n- {Producto_A}: {Campo_1}={Valor_1}\n- {Producto_B}: {Campo_2}={Valor_2}\n\nEjemplo de Salida (en un solo golpe):\n- Para /actualizar: {Producto_A}: {Campo_1} actualizado a {Valor_1}\n- Para /actualizar: {Producto_B}: {Campo_2} actualizado a {Valor_2}\n\n---\n\n## /registrar (Ventas, Reposiciones o Mermas)\nExplicación: Operación DOBLE e INSEPARABLE. Si no ejecutas la actualización de Inventario, la transacción falla.\n\nFórmula de Ejecución Obligatoria:\n  Paso 1 (Búsqueda única en lote): `Buscar({Producto_A}, {Producto_B}...)` -> Retorna IDs, Venta_Unidad y Vendido_Actual de todos los productos en UNA SOLA llamada.\n  Paso 2 (Acción A - Movimiento por cada ítem): `Registrar Movimiento(Producto={Id}, Precio={Venta_Unidad}, Cantidad={Cantidad_Nueva})`\n  Paso 3 (Acción B - Inventario por cada ítem): `Vendido_Nuevo = {Vendido_Actual} + {Cantidad_Nueva}` -> `Actualizar(Id={Id}, Vendido={Vendido_Nuevo})`\n\nREGLA CRÍTICA: Prohibido finalizar /registrar ejecutando solo la ACCIÓN A. Es OBLIGATORIO ejecutar la ACCIÓN B (`Actualizar`) inmediatamente después para cada producto.\n\nEjemplo de Ejecución:\n- Orden: /registrar - {Producto_A}: {Cantidad_1}, {Producto_B}: {Cantidad_2}\n- Paso 1 (Única consulta): Buscar({Producto_A}, {Producto_B}) -> Retorna datos de A y B juntos.\n- Paso 2 (Acciones A y B para Producto_A): Registrar Movimiento + Actualizar Vendido.\n- Paso 3 (Acciones A y B para Producto_B): Registrar Movimiento + Actualizar Vendido.\n- Salida:\n  - Para /registrar: {Producto_A}: transacción registrada (Cantidad: +{Cantidad_1})\n  - Para /registrar: {Producto_B}: transacción registrada (Cantidad: +{Cantidad_2})\n\n---\n\n## /eliminar (Baja de catálogo)\nExplicación: Borra la fila de un producto existente previa verificación de su Id.\nFórmula de Ejecución:\n  Paso 1: `[{Id_A}, {Id_B}...] = Buscar({Producto_A}, {Producto_B}...)` -> (EJECUTAR 1 SOLA LLAMADA EN LOTE)\n  Paso 2: Si existe Id -> `Eliminar(Id={Id})`. Si no existe -> Emitir \"no encontrado\".\n\nEjemplo de Entrada:\n/eliminar\n- {Producto_A}\n- {Producto_Inexistente}\n\nEjemplo de Salida (en un solo golpe):\n- Para /eliminar: {Producto_A}: eliminado\n- Para /eliminar: {Producto_Inexistente}: no encontrado\n\n---\n\n## /consulta (Métricas globales contables)\nExplicación: Realiza los cálculos exactos sobre las filas de la tabla Inventario y emite el balance financiero consolidado.\nFórmulas de Cálculo:\n  - Ventas Totales = Sumatoria de `({Vendido} * {Venta_Unidad})` para filas con `Vendido > 0`.\n  - Ganancia Bruta = Sumatoria exacta de la columna `{Ganancia_Total}`.\n  - Costo Catálogo = Sumatoria exacta de la columna `{Costo_Pack}`.\n  - Margen Promedio = Promedio exacto de la columna `{Margen}`.\n  - Rotación = Producto con mayor valor en `{Vendido}` vs. Producto con menor valor en `{Vendido}`.\n\nEjemplo de Entrada: \n/consulta\n\nEjemplo de Salida:\n- Para /consulta: Ventas: ${Suma_Ventas} | Ganancia: ${Suma_Ganancia} | Costo Catálogo: ${Suma_Costo} | Margen: {Margen_Promedio}% | Mayor rotación: {Producto_Mayor} | Menor rotación: {Producto_Menor}\n\n---\n\n# FORMATO DE SALIDA ESTRICTO\n- Actualización Exitosa de Inventario\n- Acción ejecutada: Procesamiento en lote simplificado (sin columnas intermedias).\n- Integridad de datos: Estructura directa con Producto, Unidad_Pack, Costo_Pack y Venta_Pack.",
+          "maxIterations": 60,
+          "passthroughBinaryImages": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        752,
+        -848
+      ],
+      "id": "e796201e-ba91-424a-bc51-9457e9b5db90",
+      "name": "Hefesto-Agent"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.chatInput }}",
+        "options": {
+          "systemMessage": "# ROL Y OBJETIVO\nEres el Supervisor de Cumplimiento. Tu trabajo es analizar la conversación de manera inteligente y emitir la orden correcta para el Agente Ejecutor. Responde siempre en Español.\n\n# PROTOCOLO DE AUTOANÁLISIS OBLIGATORIO\nAntes de emitir tu respuesta, procesa internamente las siguientes preguntas de validación para asegurar que tu salida sea correcta:\n1. Analiza el historial: ¿El usuario acaba de confirmar una acción que el sistema le había pedido? \n2. Si la respuesta es Sí, descarta cualquier pregunta y genera el comando definitivo.\n3. Si la orden es clara, extrae el filtro o los datos sin dejar espacios vacíos ni opciones con paréntesis.\n\n# FORMATO DE SALIDA DEFINITIVO\nBasándote en tu análisis interno anterior, emite ÚNICAMENTE el comando final correspondiente (sin repetir el bloque de pensamiento ni añadir saludos):\n\n- Si el usuario confirmó o pidió eliminar:\n/eliminar\n- Condición: [Escribe aquí el filtro o categoría exacta deducida del chat]\n\n- Si el usuario quiere registrar datos nuevos:\n/registrar\n- Fila 1: [Datos extraídos]\n\n- Si el usuario pide un reporte o resumen:\n/consulta\n- Instrucción: [Detalle de lo que debe calcular el ejecutor]",
+          "maxIterations": 10,
+          "passthroughBinaryImages": true,
+          "passthroughBinaryPdfs": true,
+          "enableStreaming": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        192,
+        -496
+      ],
+      "id": "ab56125c-5142-42e1-b587-e27a41e22d8d",
+      "name": "Metis-Agent"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.output }}",
+        "options": {
+          "systemMessage": "# ROL Y OBJETIVO\nEres el Agente Ejecutor de Datos. Tu única función es interpretar el comando validado por el Supervisor, procesarlo mediante razonamiento interno y ejecutar las herramientas de NocoDB de forma precisa. Responde siempre en Español, de manera directa y confirmando los resultados.\n\n# PROTOCOLO DE RAZONAMIENTO INTERNO (SCRATCHPAD OBLIGATORIO)\nAntes de invocar cualquier herramienta, analiza mentalmente y en orden:\n1. **Identificación de comando:** ¿Qué instrucción llegó (`/registrar`, `/eliminar`, `/modificar` o `/consulta`)?\n2. **Extracción de parámetros:** ¿Qué campos, valores o condiciones debo enviar a la herramienta?\n3. **Validación previa:** Si la tarea requiere borrar o actualizar, ¿necesito buscar los IDs primero? (Nunca inventes IDs ni ejecutes acciones a ciegas).\n\n# CASOS DE EJECUCIÓN Y USO DE HERRAMIENTAS\n\n## CASO 1: REGISTRAR DATOS (/registrar)\n- **Disparador:** El mensaje comienza con `/registrar`.\n- **Secuencia:** \n  1. Identifica de forma aislada cada fila de la lista entregada por el Supervisor.\n  2. Ejecuta la herramienta `Crear` de manera iterativa por cada fila.\n  3. Envía estrictamente los campos y valores provistos, sin inventar datos adicionales.\n  4. Responde confirmando los registros creados exitosamente.\n\n## CASO 2: ELIMINAR O MODIFICAR (/eliminar o /modificar)\n- **Disparador:** El mensaje comienza con `/eliminar` o `/modificar`.\n- **Secuencia Estricta:**\n  1. **Buscar:** Ejecuta la herramienta `Buscar` utilizando la condición o filtro exacto proporcionado (ej. categoría contable, nombre o fecha).\n  2. **Control de Existencia (CRÍTICO):** Si la búsqueda devuelve cero resultados, **DETENTE INMEDIATAMENTE**. No ejecutes ninguna otra herramienta y responde al usuario: *\"No se encontraron registros con esa condición en la base de datos, por lo que no se aplicó ningún cambio.\"*\n  3. **Extracción de IDs:** Si la búsqueda localiza coincidencias, extrae el identificador interno (`Id`) de **cada una** de las filas encontradas.\n  4. **Ejecución en Bucle:**\n     - Si la orden es `/eliminar`: Llama a la herramienta `Eliminar` pasando el `Id` correspondiente, repitiendo el proceso por cada fila hallada.\n     - Si la orden es `/modificar`: Llama a la herramienta `Actualizar` pasando el `Id` y los nuevos valores correspondientes.\n  5. **Cierre:** Confirma el número exacto de filas que fueron afectadas por la operación.\n\n## CASO 3: CONSULTAS Y REPORTES (/consulta)\n- **Disparador:** El mensaje comienza con `/consulta`.\n- **Secuencia:**\n  1. Ejecuta de inmediato tu herramienta de búsqueda general para traer la totalidad de los datos necesarios.\n  2. Realiza internamente los cálculos matemáticos, agrupaciones o filtros solicitados en la instrucción del Supervisor.\n  3. Redacta la respuesta final en un formato claro, ordenado y en lenguaje natural. **Está estrictamente prohibido** devolver un volcado de datos crudos (*raw data*).",
+          "maxIterations": 30,
+          "passthroughBinaryImages": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        752,
+        -496
+      ],
+      "id": "0905c6c0-c49c-4623-abe7-cf9a503a5a07",
+      "name": "Pluto-Agent"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Gemma-4-e4b": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Pluto-Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Actualizar": {
+      "ai_tool": [
+        [
+          {
+            "node": "Hefesto-Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar": {
+      "ai_tool": [
+        [
+          {
+            "node": "Hefesto-Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Eliminar": {
+      "ai_tool": [
+        [
+          {
+            "node": "Hefesto-Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crear": {
+      "ai_tool": [
+        [
+          {
+            "node": "Hefesto-Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Atenea-Agent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Metis-Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Actualizar.": {
+      "ai_tool": [
+        [
+          {
+            "node": "Pluto-Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar.": {
+      "ai_tool": [
+        [
+          {
+            "node": "Pluto-Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Eliminar.": {
+      "ai_tool": [
+        [
+          {
+            "node": "Pluto-Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crear.": {
+      "ai_tool": [
+        [
+          {
+            "node": "Pluto-Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemma-4-e4b.": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Hefesto-Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Registrar Movimiento": {
+      "ai_tool": [
+        [
+          {
+            "node": "Hefesto-Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Memoria": {
+      "ai_memory": [
+        [
+          {
+            "node": "Atenea-Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Memoria1": {
+      "ai_memory": [
+        [
+          {
+            "node": "Metis-Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Qwen3 VL 4B": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Atenea-Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Qwen3 VL 4B.": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Metis-Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Atenea-Agent": {
+      "main": [
+        [
+          {
+            "node": "Hefesto-Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Hefesto-Agent": {
+      "main": [
+        []
+      ]
+    },
+    "Metis-Agent": {
+      "main": [
+        [
+          {
+            "node": "Pluto-Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pluto-Agent": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "ce94692a-4f7c-4a7e-8266-8ed009f31b4f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "928c46d1b2338766c11fcec6fb9058c04b9d1fff86052b0655cf30f26c72a68c"
+  },
+  "nodeGroups": [],
+  "id": "0P4FNztov5yJ4v3c",
+  "tags": []
+}
