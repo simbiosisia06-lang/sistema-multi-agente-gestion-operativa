@@ -106,8 +106,8 @@ El proyecto incluye conjuntos completos de datos ficticios en la carpeta [`mock-
 ### 1. Clonar el Repositorio y Configurar Variables
 
 ```bash
-git clone https://github.com/<tu-usuario>/sistema-multi-agente-gestion-operativa.git
-cd sistema-multi-agente-gestion-operativa
+git clone https://github.com/simbiosisia06-lang/Automatizaci-n-MultiAgente.git
+cd Automatizaci-n-MultiAgente
 
 # Copiar plantilla de entorno
 cp .env.example .env
